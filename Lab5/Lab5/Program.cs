@@ -182,12 +182,14 @@ namespace laba_5
 				if (selector == 3)
 				{
 					int number = 0;
+					string surname = string.Empty;
 					do
 					{
 						Console.WriteLine("Choose the number of row to delete: ");
 						number = int.Parse(Console.ReadLine());
-						if (number > 0 && number < table.Count)
+						if (number > 0 && number <= table.Count)
 						{
+							surname = table[number-1].surname;
 							table.RemoveAt(number - 1);
 							error = false;
 						}
@@ -202,7 +204,7 @@ namespace laba_5
 					Log newLog;
 					newLog.time = DateTime.Now;
 					newLog.operation = "Record deleted";
-					newLog.name = table[number - 1].surname;
+					newLog.name = surname;
 					logOfSession.Add(newLog);
 					
 					firstTime = newLog.time;
@@ -226,7 +228,7 @@ namespace laba_5
 					{
 						Console.WriteLine("Choose the number of row to update: ");
 						number = int.Parse(Console.ReadLine());
-						if (number > 0 && number < table.Count)
+						if (number > 0 && number <= table.Count)
 						{
 							oldSurname = table[number - 1].surname;
 							Console.Write("Enter the surname: ");
@@ -304,11 +306,12 @@ namespace laba_5
 					editWorker.year = year;
 					editWorker.salary = salary;
 					table.Insert(number - 1, editWorker);
+					table.Remove(table[number]);
 					
 					Log newLog;
 					newLog.time = DateTime.Now;
 					newLog.operation = "Record updated";
-					newLog.name = oldSurname;
+					newLog.name = oldSurname + " --> " + surname;
 					logOfSession.Add(newLog);
 					
 					firstTime = newLog.time;
@@ -341,12 +344,12 @@ namespace laba_5
 								pos = Pos.А;
 							for (int i = 0; i < table.Count; i++)
 							{
-								Console.WriteLine(table[i].position);
 								if (table[i].position == pos)
 								{
-									Console.WriteLine(table[i]);
+									table[i].showTable();
 								}
 							}
+							error = false;
 						}
 						else
 						{
