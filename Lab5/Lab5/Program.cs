@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -35,7 +35,7 @@ namespace laba_5
 
 			public void logOutput() 
 			{
-				Console.WriteLine("{0, -20} : {1, -20} {2, -20}", time, operation, name);
+				Console.WriteLine("{0, -20} : {1, -15} {2, -15}", time, operation, name);
 			}
 		}
         
@@ -88,6 +88,7 @@ namespace laba_5
 					{
 						table[i].showTable();
 					}
+					Console.WriteLine();
 				}
 				if (selector == 2)
 				{
@@ -176,6 +177,7 @@ namespace laba_5
 						downtime = secondDowntime;
 					}
 					secondTime = newLog.time;
+					Console.WriteLine();
 				}
 				if (selector == 3)
 				{
@@ -210,6 +212,7 @@ namespace laba_5
 						downtime = secondDowntime;
 					}
 					secondTime = newLog.time;
+					Console.WriteLine();
 				}
 				if (selector == 4)
 				{
@@ -315,9 +318,11 @@ namespace laba_5
 						downtime = secondDowntime;
 					}
 					secondTime = newLog.time;
+					Console.WriteLine();
 				}
 				if (selector == 5)
 				{
+					var pos = Pos.П;
 					do
 					{
 						Console.WriteLine("П - teachers");
@@ -325,12 +330,19 @@ namespace laba_5
 						Console.WriteLine("А - graduate students");
 						Console.WriteLine("Enter who you want to find (russian letter): ");
 						string select = Console.ReadLine();
+						Console.WriteLine();
 						if (select == "П" || select == "С" || select == "А")
 						{
+							if (select == "П")
+								pos = Pos.П;
+							if (select == "С")
+								pos = Pos.С;
+							if (select == "А")
+								pos = Pos.А;
 							for (int i = 0; i < table.Count; i++)
 							{
-								if (table[i].position == select)
-									// исправить!!!
+								Console.WriteLine(table[i].position);
+								if (table[i].position == pos)
 								{
 									Console.WriteLine(table[i]);
 								}
@@ -343,6 +355,7 @@ namespace laba_5
 					}
 					while (error);
 					error = true;
+					Console.WriteLine();
 				}
 				if (selector == 6)
 				{
@@ -352,6 +365,7 @@ namespace laba_5
 					}
 					Console.WriteLine();
 					Console.WriteLine(downtime + " - the largest downtime");
+					Console.WriteLine();
 				}
 				if (selector == 7)
 				{
@@ -364,6 +378,7 @@ namespace laba_5
 				}
 			}
 			while (working);
+			Console.WriteLine();
         }
     }
 }
